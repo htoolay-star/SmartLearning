@@ -1,0 +1,33 @@
+﻿@model List<CourseListItemViewModel>
+
+<h2>Courses</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Create New Course</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>
+                    @if (course.ProfileImage != null)
+                    {
+                        <img src="data:image/png;base64,@Convert.ToBase64String(course.ProfileImage)" width="80" />
+                    }
+                </td>
+                <td>@course.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@course.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@course.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@course.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

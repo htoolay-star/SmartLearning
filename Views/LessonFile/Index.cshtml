@@ -1,0 +1,32 @@
+﻿@model List<LessonFileListItemViewModel>
+
+<h2>Lesson Files</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Upload New File</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Type</th>
+            <th>Lesson</th>
+            <th>Uploaded At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var file in Model)
+        {
+            <tr>
+                <td>@file.FileName</td>
+                <td>@file.FileType</td>
+                <td>@file.LessonName</td>
+                <td>@file.UploadedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@file.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@file.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@file.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,32 @@
+﻿@model LessonFileFormViewModel
+
+<h2>Upload Lesson File</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="FileName" class="form-label"></label>
+        <input asp-for="FileName" class="form-control" />
+        <span asp-validation-for="FileName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Upload" class="form-label">Choose File</label>
+        <input type="file" asp-for="Upload" class="form-control" />
+        <span asp-validation-for="Upload" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="LessonId" class="form-label">Lesson</label>
+        <select asp-for="LessonId" asp-items="Model.LessonList" class="form-select"></select>
+        <span asp-validation-for="LessonId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Upload</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
